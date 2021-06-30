@@ -64,3 +64,9 @@ End if
 DIALOG("TEST")
 CLOSE WINDOW($window)
 ```
+
+Normally you just need the *x* and *y* coordinates. *left* and *top* are used internally. *screen* is for information.
+
+The *set()* method calculates the *top* and *left* ratio for the current form for the current screen.
+
+The *get()* method calibrates the *x* and *y* for the current screen setup. if the stored *x* and *y* coordinates exist in the current screen setup, it is returned "as is". otherwise, *left* and *top* are converted to *x* and *y* for the main screen.
