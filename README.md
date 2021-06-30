@@ -1,3 +1,6 @@
+![version](https://img.shields.io/badge/version-18%2B-EB8E5F)
+[![license](https://img.shields.io/github/license/miyako/4d-utility-window-bounds)](LICENSE)
+
 # 4d-utility-window-bounds
 JSON window bounds manager that is multiple screen aware
 
