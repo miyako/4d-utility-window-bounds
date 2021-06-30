@@ -70,3 +70,25 @@ Normally you just need the *x* and *y* coordinates. *left* and *top* are used in
 The *set()* method calculates the *top* and *left* ratio for the current form for the current screen.
 
 The *get()* method calibrates the *x* and *y* for the current screen setup. if the stored *x* and *y* coordinates exist in the current screen setup, it is returned "as is". otherwise, *left* and *top* are converted to *x* and *y* for the main screen.
+
+### Remarks 
+
+The new *workArea* parameter for [SCREEN COORDINATES](https://blog.4d.com/take-control-of-your-work-area/) is used for v18 R2 and later. To support v18 LTS, the command is called dynamically.
+
+```4d
+C_LONGINT($left; $top; $right; $bottom)
+
+$appVersion:=Application version
+If (Not(is_preemtive))
+	//%T-
+	$screen:=Menu bar screen
+	If ($appVersion>="1820")
+		Formula from string(Command name(438)+"($1->;$2->;$3->;$4->;$5;$6"+")").call(Null; ->$left; ->$top; ->$right; ->$bottom; $screen; 1)  //Screen work area
+	Else 
+		SCREEN COORDINATES($left; $top; $right; $bottom; $screen)
+	End if 
+	//%T+
+End if
+```
+
+
