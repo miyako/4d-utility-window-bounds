@@ -94,4 +94,5 @@ If (Not(is_preemtive))
 End if
 ```
 
+The component itself is thread safe. Thread unsafe commands related to the user interface are skipped if the current process is preemptive.
 
