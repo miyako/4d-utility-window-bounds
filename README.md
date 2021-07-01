@@ -12,8 +12,8 @@ c.f. `Open form window`, 4D Window Bounds
 
 The component exports a singleton pseudo-class (shared project method) with 2 member methods.
 
-* Bounds.set(*identifier*)
-* Bounds.get(*identifier*)
+* Bounds.set(*identifier*{;*context*})
+* Bounds.get(*identifier*{;*context*})
 
 *identifier* for table form: "[tableName]formName"  
 *identifier* for project form: "formName"
@@ -22,6 +22,13 @@ Window bounds are stored in
 
 * {fk user preferences folder}/*hostProjectName*/Bounds/[*tableName*]*formName*.json
 * {fk user preferences folder}/*hostProjectName*/Bounds/[{projectForm}]*formName*.json
+
+or 
+
+* {fk user preferences folder}/*hostProjectName*/Bounds/[*tableName*]*formName*/*contextHash*.json
+* {fk user preferences folder}/*hostProjectName*/Bounds/[{projectForm}]*formName*/*contextHash*.json
+
+if a context is used.
 
 ### Examples
 
@@ -95,6 +102,12 @@ If (Not(is_preemtive))
 	//%T+
 End if
 ```
+
+### Context
+
+In addition to a form identifier, you can pass a context. This is useful if the same form is used in multiple contexts.
+
+Any value type supported by **C_VARIANT** can be used as a context.
 
 The component itself is thread safe. Thread unsafe commands related to the user interface are skipped if the current process is preemptive.
 
