@@ -88,7 +88,7 @@ If (Not(is_preemtive))
 	//%T-
 	$screen:=Menu bar screen
 	If ($appVersion>="1820")
-		Formula from string(Command name(438)+"($1->;$2->;$3->;$4->;$5;$6"+")").call(Null; ->$left; ->$top; ->$right; ->$bottom; $screen; 1)  //Screen work area
+		Formula from string(Command name(438)+"($1->;$2->;$3->;$4->;$5;$6)").call(Null; ->$left; ->$top; ->$right; ->$bottom; $screen; 1)  //Screen work area
 	Else 
 		SCREEN COORDINATES($left; $top; $right; $bottom; $screen)
 	End if 
