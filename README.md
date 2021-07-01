@@ -68,6 +68,8 @@ DIALOG("TEST")
 CLOSE WINDOW($window)
 ```
 
+**Note**: The reason for not using {x:0, y:0} above is so that the window is not displayed under the menu bar or task bar.
+
 Normally you just need the *x* and *y* coordinates. *left* and *top* are used internally. *screen* is for information.
 
 The *set()* method calculates the *top* and *left* ratio for the current window for the current screen. It must be called during a form event.
