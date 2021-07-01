@@ -98,3 +98,6 @@ End if
 
 The component itself is thread safe. Thread unsafe commands related to the user interface are skipped if the current process is preemptive.
 
+### Limits
+
+The code does not respond to system notification about changes to the screen setup and move or resize windows that are already open. That is outside the scope of this project.
