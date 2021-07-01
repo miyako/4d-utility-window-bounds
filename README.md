@@ -1,3 +1,6 @@
+![version](https://img.shields.io/badge/version-18%2B-EB8E5F)
+[![license](https://img.shields.io/github/license/miyako/4d-utility-window-bounds)](LICENSE)
+
 # 4d-utility-window-bounds
 JSON window bounds manager that is multiple screen aware
 
@@ -65,9 +68,11 @@ DIALOG("TEST")
 CLOSE WINDOW($window)
 ```
 
+**Note**: The reason for not using {x:0, y:0} above is so that the window is not displayed under the menu bar or task bar.
+
 Normally you just need the *x* and *y* coordinates. *left* and *top* are used internally. *screen* is for information.
 
-The *set()* method calculates the *top* and *left* ratio for the current form for the current screen.
+The *set()* method calculates the *top* and *left* ratio for the current window for the current screen. It must be called during a form event.
 
 The *get()* method calibrates the *x* and *y* for the current screen setup. if the stored *x* and *y* coordinates exist in the current screen setup, it is returned "as is". otherwise, *left* and *top* are converted to *x* and *y* for the main screen.
 
@@ -83,7 +88,7 @@ If (Not(is_preemtive))
 	//%T-
 	$screen:=Menu bar screen
 	If ($appVersion>="1820")
-		Formula from string(Command name(438)+"($1->;$2->;$3->;$4->;$5;$6"+")").call(Null; ->$left; ->$top; ->$right; ->$bottom; $screen; 1)  //Screen work area
+		Formula from string(Command name(438)+"($1->;$2->;$3->;$4->;$5;$6)").call(Null; ->$left; ->$top; ->$right; ->$bottom; $screen; 1)  //Screen work area
 	Else 
 		SCREEN COORDINATES($left; $top; $right; $bottom; $screen)
 	End if 
@@ -91,4 +96,8 @@ If (Not(is_preemtive))
 End if
 ```
 
+The component itself is thread safe. Thread unsafe commands related to the user interface are skipped if the current process is preemptive.
 
+### Limits
+
+The code does not respond to system notification about changes to the screen setup and move or resize windows that are already open. That is outside the scope of this project.
